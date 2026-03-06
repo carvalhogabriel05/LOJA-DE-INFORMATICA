@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechPulse Informática – Periféricos Gamer, Setup RGB e PC Hardware</title>
+<meta name="description" content="Setup gamer, periféricos profissionais, teclado mecânico, mouse RGB, monitor 144Hz, placa de vídeo e muito mais. Monte o setup dos seus sonhos na TechPulse.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #070709;
+    --dark: #0e0e14;
+    --card: #13131c;
+    --border: #1e1e2e;
+    --purple: #7c3aed;
+    --purple-bright: #9d5cff;
+    --purple-glow: rgba(124,58,237,0.35);
+    --cyan: #00f5d4;
+    --cyan-dim: rgba(0,245,212,0.12);
+    --white: #f0f0f8;
+    --muted: #8888aa;
+    --green: #22c55e;
+    --red: #f43f5e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  h1,h2,h3,h4 { font-family: 'Syne', sans-serif; letter-spacing: -0.02em; }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.6;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6vw;
+    height: 64px;
+    background: rgba(7,7,9,0.82);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+  }
+  .logo span { color: var(--cyan); }
+
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav ul a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500;
+    transition: color .2s;
+  }
+  nav ul a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--purple);
+    color: #fff !important;
+    padding: .4rem 1.1rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 0.82rem !important;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--purple-bright) !important; color: #fff !important; }
+
+  /* ─── SECTION WRAPPER ─── */
+  section { position: relative; z-index: 1; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 5vw; }
+
+  /* ─── BUTTONS ─── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: .55rem;
+    background: var(--purple);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: .85rem 2rem;
+    border-radius: 8px;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 0 28px var(--purple-glow);
+  }
+  .btn-primary:hover {
+    background: var(--purple-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 0 44px var(--purple-glow);
+  }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: transparent;
+    color: var(--cyan);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: .9rem;
+    padding: .8rem 1.8rem;
+    border-radius: 8px;
+    border: 1.5px solid var(--cyan);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+  }
+  .btn-secondary:hover {
+    background: var(--cyan-dim);
+    transform: translateY(-2px);
+  }
+
+  /* ─── BADGE ─── */
+  .badge {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .2rem .65rem;
+    border-radius: 99px;
+  }
+  .badge-purple { background: rgba(124,58,237,.25); color: var(--purple-bright); border: 1px solid rgba(124,58,237,.5); }
+  .badge-cyan   { background: rgba(0,245,212,.1);  color: var(--cyan);           border: 1px solid rgba(0,245,212,.3); }
+  .badge-red    { background: rgba(244,63,94,.15); color: var(--red);            border: 1px solid rgba(244,63,94,.4); }
+  .badge-green  { background: rgba(34,197,94,.12); color: var(--green);          border: 1px solid rgba(34,197,94,.35); }
+
+  /* ────────────────────────────────────────────
+     1. HERO SECTION
+  ──────────────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 80px 0 60px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(124,58,237,.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,245,212,.07) 0%, transparent 60%),
+      var(--black);
+  }
+
+  /* grid lines */
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 90% 80% at 60% 50%, black 30%, transparent 80%);
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 3rem;
+    width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 5vw;
+  }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: .75rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow-line {
+    width: 32px; height: 2px;
+    background: linear-gradient(90deg, var(--cyan), transparent);
+  }
+  .hero-eyebrow span {
+    font-size: .75rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--cyan);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.0;
+    margin-bottom: 1.4rem;
+    color: var(--white);
+  }
+  .hero h1 .accent { color: var(--purple-bright); }
+  .hero h1 .accent-c { color: var(--cyan); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 480px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-bullets {
+    list-style: none;
+    display: flex; flex-direction: column; gap: .65rem;
+    margin-bottom: 2.2rem;
+  }
+  .hero-bullets li {
+    display: flex; align-items: center; gap: .65rem;
+    font-size: .92rem; font-weight: 500; color: var(--white);
+  }
+  .hero-bullets li::before {
+    content: '▸';
+    color: var(--cyan);
+    font-size: .75rem;
+    flex-shrink: 0;
+  }
+
+  .hero-ctas {
+    display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;
+  }
+
+  .hero-trust {
+    display: flex; align-items: center; gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .hero-trust-item {
+    display: flex; align-items: center; gap: .4rem;
+    font-size: .78rem; color: var(--muted);
+  }
+  .hero-trust-item .ico { font-size: .9rem; }
+
+  /* visual side */
+  .hero-visual {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-mockup {
+    width: 100%; max-width: 500px;
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1a0a2e 0%, #0a0a18 50%, #0d1a1a 100%);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(124,58,237,.25), 0 32px 80px rgba(0,0,0,.6);
+  }
+  .hero-mockup::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 40% 40%, rgba(124,58,237,.25) 0%, transparent 70%);
+  }
+  .hero-mockup-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: .4rem; color: rgba(255,255,255,.15);
+    font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  }
+  .hero-mockup-content .big-icon {
+    font-size: 4rem; margin-bottom: .5rem;
+    filter: drop-shadow(0 0 24px var(--purple));
+    animation: pulse-icon 3s ease-in-out infinite;
+  }
+  @keyframes pulse-icon {
+    0%,100% { filter: drop-shadow(0 0 24px var(--purple)); }
+    50% { filter: drop-shadow(0 0 40px var(--cyan)); }
+  }
+
+  .hero-float-card {
+    position: absolute;
+    background: rgba(19,19,28,.9);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: .65rem 1rem;
+    font-size: .78rem;
+    font-weight: 600;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .hero-float-card.card-1 { bottom: -16px; left: -20px; color: var(--green); border-color: rgba(34,197,94,.3); }
+  .hero-float-card.card-2 { top: -16px; right: -16px; color: var(--cyan); border-color: rgba(0,245,212,.3); }
+  .hero-float-card.card-3 { bottom: 30%; right: -30px; color: var(--purple-bright); border-color: rgba(124,58,237,.4); }
+
+  /* ────────────────────────────────────────────
+     2. POR QUE COMPRAR AQUI
+  ──────────────────────────────────────────── */
+  #porque {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--black) 0%, var(--dark) 100%);
+  }
+
+  .section-label {
+    text-align: center; margin-bottom: .8rem;
+  }
+  .section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 900;
+    margin-bottom: .8rem;
+    line-height: 1.1;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 520px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.65;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .why-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    transition: border-color .25s, transform .25s;
+    position: relative; overflow: hidden;
+  }
+  .why-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--purple), transparent);
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .why-card:hover { border-color: rgba(124,58,237,.4); transform: translateY(-4px); }
+  .why-card:hover::before { opacity: 1; }
+
+  .why-icon {
+    width: 48px; height: 48px;
+    background: rgba(124,58,237,.15);
+    border: 1px solid rgba(124,58,237,.25);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .why-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: .5rem; }
+  .why-card p { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+
+  /* ────────────────────────────────────────────
+     3. PRODUTOS MAIS VENDIDOS
+  ──────────────────────────────────────────── */
+  #produtos {
+    padding: 100px 0;
+    background: var(--dark);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .product-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+    display: flex; flex-direction: column;
+  }
+  .product-card:hover {
+    border-color: rgba(124,58,237,.5);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,.4), 0 0 30px rgba(124,58,237,.1);
+  }
+
+  .product-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-img-bg-purple { background: linear-gradient(135deg, #1a0a2e, #0a0518); }
+  .product-img-bg-cyan   { background: linear-gradient(135deg, #001a18, #00120e); }
+  .product-img-bg-dark   { background: linear-gradient(135deg, #0a0a18, #050510); }
+  .product-img-bg-mixed  { background: linear-gradient(135deg, #1a0a18, #0a1020); }
+
+  .product-img .glow {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+    filter: drop-shadow(0 0 20px var(--purple));
+  }
+
+  .product-badges {
+    position: absolute; top: .6rem; left: .6rem;
+    display: flex; flex-direction: column; gap: .3rem;
+  }
+
+  .product-info {
+    padding: 1.1rem;
+    flex: 1; display: flex; flex-direction: column; gap: .5rem;
+  }
+  .product-name {
+    font-family: 'Syne', sans-serif;
+    font-size: .88rem; font-weight: 800; line-height: 1.3;
+    color: var(--white);
+  }
+  .product-desc {
+    font-size: .75rem; color: var(--muted); line-height: 1.5;
+    flex: 1;
+  }
+  .product-price-row {
+    display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap;
+  }
+  .product-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 900;
+    color: var(--white);
+  }
+  .product-old-price {
+    font-size: .78rem; color: var(--muted);
+    text-decoration: line-through;
+  }
+  .product-discount {
+    font-size: .68rem; font-weight: 700;
+    color: var(--green); background: rgba(34,197,94,.12);
+    padding: .1rem .35rem; border-radius: 4px;
+  }
+  .product-btn {
+    display: block; width: 100%;
+    padding: .65rem;
+    background: var(--purple);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: .82rem;
+    border: none; border-radius: 7px;
+    cursor: pointer; text-align: center;
+    text-decoration: none;
+    transition: background .2s;
+    margin-top: .3rem;
+  }
+  .product-btn:hover { background: var(--purple-bright); }
+
+  .products-cta-row {
+    text-align: center; margin-top: 3rem;
+  }
+
+  /* ────────────────────────────────────────────
+     4. TRANSFORMAÇÃO / BENEFÍCIOS
+  ──────────────────────────────────────────── */
+  #beneficios {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
+    position: relative; overflow: hidden;
+  }
+  #beneficios::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ben-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem; align-items: center;
+  }
+
+  .ben-left .section-title,
+  .ben-left .section-sub { text-align: left; }
+  .ben-left .section-label { text-align: left; }
+
+  .ben-bullets {
+    display: flex; flex-direction: column; gap: 1rem;
+    margin-top: 2rem;
+  }
+  .ben-bullet {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .ben-bullet-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .bi-purple { background: rgba(124,58,237,.15); border: 1px solid rgba(124,58,237,.3); }
+  .bi-cyan   { background: rgba(0,245,212,.08);  border: 1px solid rgba(0,245,212,.2); }
+
+  .ben-bullet-text strong {
+    display: block; font-weight: 700; font-size: .92rem; margin-bottom: .2rem;
+  }
+  .ben-bullet-text p { font-size: .83rem; color: var(--muted); line-height: 1.55; }
+
+  /* before/after visual */
+  .ben-right {
+    position: relative;
+  }
+  .comparison-box {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .comp-header {
+    background: var(--card);
+    padding: .75rem 1.25rem;
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-before { color: var(--muted); }
+  .comp-after  { color: var(--cyan); }
+  .comp-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-grey { background: var(--muted); }
+  .dot-cyan { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+
+  .comp-content {
+    background: var(--dark);
+    padding: 1.5rem;
+    display: flex; flex-direction: column; gap: .75rem;
+  }
+  .comp-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: .85rem;
+    padding: .5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-row .label { color: var(--muted); font-size: .78rem; }
+  .comp-row .bad { color: #ef4444; font-weight: 600; }
+  .comp-row .good { color: var(--cyan); font-weight: 700; }
+
+  /* ────────────────────────────────────────────
+     5. PROVA SOCIAL
+  ──────────────────────────────────────────── */
+  #prova {
+    padding: 100px 0;
+    background: var(--black);
+  }
+
+  .stats-row {
+    display: flex; justify-content: center; gap: 3rem;
+    flex-wrap: wrap; margin-bottom: 4rem;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem; font-weight: 900;
+    color: var(--white);
+    display: block; margin-bottom: .2rem;
+  }
+  .stat-num .accent { color: var(--purple-bright); }
+  .stat-label { font-size: .8rem; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
+
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; margin-bottom: 4rem;
+  }
+
+  .review-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color .25s;
+  }
+  .review-card:hover { border-color: rgba(124,58,237,.35); }
+
+  .review-stars { color: #fbbf24; font-size: .9rem; margin-bottom: .85rem; letter-spacing: .05em; }
+  .review-text { font-size: .87rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
+  .review-author { display: flex; align-items: center; gap: .65rem; }
+  .review-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .85rem; font-weight: 700; flex-shrink: 0;
+  }
+  .av-1 { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+  .av-2 { background: linear-gradient(135deg, #0891b2, #0e7490); }
+  .av-3 { background: linear-gradient(135deg, #059669, #047857); }
+  .av-4 { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+  .av-5 { background: linear-gradient(135deg, #d97706, #b45309); }
+
+  .review-author-info strong { display: block; font-size: .85rem; font-weight: 700; }
+  .review-author-info span { font-size: .75rem; color: var(--muted); }
+
+  .seals-row {
+    display: flex; justify-content: center; align-items: center;
+    gap: 1.5rem; flex-wrap: wrap;
+  }
+  .seal {
+    display: flex; align-items: center; gap: .5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .6rem 1.1rem;
+    font-size: .78rem; font-weight: 600; color: var(--muted);
+  }
+  .seal .s-icon { font-size: 1rem; }
+  .seal.seal-green { border-color: rgba(34,197,94,.3); color: var(--green); }
+  .seal.seal-blue  { border-color: rgba(96,165,250,.3); color: #60a5fa; }
+
+  /* ────────────────────────────────────────────
+     6. MARCAS PARCEIRAS
+  ──────────────────────────────────────────── */
+  #marcas {
+    padding: 80px 0;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .marcas-label {
+    text-align: center;
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .brands-grid {
+    display: flex; justify-content: center; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .brand-pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .6rem 1.4rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: .82rem;
+    color: var(--muted);
+    letter-spacing: .02em;
+    transition: color .2s, border-color .2s, transform .2s;
+  }
+  .brand-pill:hover {
+    color: var(--white);
+    border-color: rgba(124,58,237,.4);
+    transform: translateY(-2px);
+  }
+
+  /* ────────────────────────────────────────────
+     7. OFERTA ESPECIAL / URGÊNCIA
+  ──────────────────────────────────────────── */
+  #oferta {
+    padding: 100px 0;
+    background: var(--black);
+    position: relative; overflow: hidden;
+  }
+  #oferta::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: -100px; right: -100px; bottom: -100px;
+    background:
+      radial-gradient(ellipse 60% 50% at 30% 50%, rgba(124,58,237,.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 70% 50%, rgba(0,245,212,.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .oferta-box {
+    background: var(--card);
+    border: 1px solid rgba(124,58,237,.4);
+    border-radius: 20px;
+    padding: 3.5rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 60px rgba(124,58,237,.15), inset 0 1px 0 rgba(124,58,237,.2);
+    max-width: 760px; margin: 0 auto;
+  }
+
+  .oferta-box .coupon-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--purple), var(--purple-bright));
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem; font-weight: 900;
+    letter-spacing: .1em;
+    padding: .7rem 2rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    border: 2px dashed rgba(255,255,255,.3);
+    box-shadow: 0 0 30px var(--purple-glow);
+  }
+
+  .countdown-row {
+    display: flex; justify-content: center; gap: 1.25rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .countdown-block {
+    text-align: center;
+  }
+  .countdown-num {
+    display: block;
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 900;
+    color: var(--cyan);
+    padding: .5rem .9rem;
+    min-width: 64px;
+    font-variant-numeric: tabular-nums;
+  }
+  .countdown-label {
+    font-size: .65rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); margin-top: .35rem; display: block;
+  }
+  .countdown-sep {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 900;
+    color: var(--muted);
+    padding-top: .5rem;
+  }
+
+  .oferta-h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 900; margin-bottom: .7rem; }
+  .oferta-sub { color: var(--muted); font-size: .95rem; margin-bottom: .5rem; }
+  .oferta-fine { font-size: .75rem; color: var(--muted); margin-top: 1rem; }
+
+  /* ────────────────────────────────────────────
+     8. FINAL CTA
+  ──────────────────────────────────────────── */
+  #final-cta {
+    padding: 120px 0 100px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--black) 0%, #0a0518 100%);
+    position: relative; overflow: hidden;
+  }
+  #final-cta::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(124,58,237,.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-cta-inner { position: relative; z-index: 1; }
+  .final-cta-inner h2 {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 900; line-height: 1.0;
+    margin-bottom: 1.2rem;
+  }
+  .final-cta-inner .sub {
+    font-size: 1.05rem; color: var(--muted);
+    max-width: 520px; margin: 0 auto 2.5rem;
+    line-height: 1.65;
+  }
+  .final-cta-inner .btn-primary {
+    font-size: 1.15rem;
+    padding: 1rem 2.8rem;
+  }
+  .final-security {
+    display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+    margin-top: 1.8rem;
+    font-size: .78rem; color: var(--muted);
+  }
+  .final-security span { display: flex; align-items: center; gap: .35rem; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    padding: 3rem 0;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem; font-weight: 900;
+    margin-bottom: .5rem;
+  }
+  .footer-logo span { color: var(--cyan); }
+  footer p { font-size: .8rem; color: var(--muted); }
+
+  /* ─── AB SECTION ─── */
+  #ab-tests {
+    padding: 80px 0;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+  }
+  .ab-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .ab-card {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+  }
+  .ab-card .ab-num {
+    font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--purple-bright); margin-bottom: .6rem;
+  }
+  .ab-card h3 { font-size: 1.05rem; font-weight: 800; line-height: 1.25; margin-bottom: .5rem; }
+  .ab-card p { font-size: .8rem; color: var(--muted); line-height: 1.55; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp .7s ease both; }
+  .delay-1 { animation-delay: .1s; }
+  .delay-2 { animation-delay: .2s; }
+  .delay-3 { animation-delay: .3s; }
+  .delay-4 { animation-delay: .4s; }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .float-anim { animation: float 4s ease-in-out infinite; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav ul { display: none; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .cards-grid { grid-template-columns: repeat(2,1fr); }
+    .products-grid { grid-template-columns: repeat(2,1fr); }
+    .reviews-grid { grid-template-columns: repeat(2,1fr); }
+    .ben-grid { grid-template-columns: 1fr; }
+    .ab-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .countdown-row { gap: .6rem; }
+    .oferta-box { padding: 2rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav>
+  <div class="logo">Tech<span>Pulse</span></div>
+  <ul>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#porque">Vantagens</a></li>
+    <li><a href="#prova">Reviews</a></li>
+    <li><a href="#oferta" class="nav-cta">🔥 Oferta</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     1. HERO SECTION
+══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-inner">
+    <!-- Texto -->
+    <div class="hero-text">
+      <div class="hero-eyebrow fade-up">
+        <div class="hero-eyebrow-line"></div>
+        <span>Setup Gamer &amp; Profissional · Entrega Rápida</span>
+      </div>
+
+      <h1 class="fade-up delay-1">
+        Seu Setup dos<br>
+        Sonhos<br>
+        <span class="accent">Começa Aqui.</span>
+      </h1>
+
+      <p class="hero-sub fade-up delay-2">
+        Periféricos gamer, hardware de alto desempenho e tudo que você precisa para montar o setup perfeito — com os melhores preços e entrega em todo o Brasil.
+      </p>
+
+      <ul class="hero-bullets fade-up delay-2">
+        <li>Hardware original com garantia do fabricante</li>
+        <li>Parcele em até 12x sem juros no cartão</li>
+        <li>Frete grátis para compras acima de R$199</li>
+      </ul>
+
+      <div class="hero-ctas fade-up delay-3">
+        <a href="#produtos" class="btn-primary">
+          🛒 Montar meu Setup Agora
+        </a>
+        <a href="#oferta" class="btn-secondary">
+          🎁 Pegar meu Cupom
+        </a>
+      </div>
+
+      <div class="hero-trust fade-up delay-4">
+        <div class="hero-trust-item">
+          <span class="ico">🔒</span>
+          <span>Compra 100% segura</span>
+        </div>
+        <div class="hero-trust-item">
+          <span class="ico">↩️</span>
+          <span>7 dias para trocar</span>
+        </div>
+        <div class="hero-trust-item">
+          <span class="ico">⚡</span>
+          <span>Suporte especializado</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual -->
+    <div class="hero-visual fade-up delay-2">
+      <div class="hero-mockup float-anim">
+        <div class="hero-mockup-content">
+          <div class="big-icon">🖥️</div>
+          <span>Setup Gamer</span>
+          <span style="color:rgba(255,255,255,.07)">144Hz · RGB · 4K</span>
+        </div>
+      </div>
+      <div class="hero-float-card card-1">
+        ✅ +15.000 setups entregues
+      </div>
+      <div class="hero-float-card card-2">
+        ⚡ Entrega em 1–3 dias úteis
+      </div>
+      <div class="hero-float-card card-3">
+        🌟 4.8★ de 2.347 avaliações
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     2. POR QUE COMPRAR AQUI
+══════════════════════════════════════════ -->
+<section id="porque">
+  <div class="wrap">
+    <div class="section-label">
+      <span class="badge badge-purple">Por que a TechPulse?</span>
+    </div>
+    <h2 class="section-title">Mais que uma loja —<br>uma <span style="color:var(--purple-bright)">experiência</span> completa</h2>
+    <p class="section-sub">Do PC builder iniciante ao profissional exigente: a TechPulse tem o que você precisa, com suporte de verdade.</p>
+
+    <div class="cards-grid">
+      <div class="why-card">
+        <div class="why-icon">🚀</div>
+        <h3>Entrega Expressa</h3>
+        <p>Despacho em até 24h úteis. Entrega em 1 a 3 dias para as principais capitais via SEDEX.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <h3>Garantia Estendida</h3>
+        <p>Produtos originais com nota fiscal e garantia do fabricante + suporte pós-venda especializado.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💳</div>
+        <h3>12x Sem Juros</h3>
+        <p>Parcele em até 12x no cartão de crédito, ou ganhe desconto especial no Pix. Sem surpresas.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎮</div>
+        <h3>Curadoria Gamer</h3>
+        <p>Cada produto é selecionado por especialistas. Nada de produto genérico: só o que realmente performa.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔧</div>
+        <h3>Consultoria Grátis</h3>
+        <p>Está em dúvida sobre compatibilidade ou qual peça escolher? Nosso time técnico responde no chat.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">♻️</div>
+        <h3>Troca sem Burocracia</h3>
+        <p>7 dias para arrepender. Produto com defeito? Resolvemos rápido, sem jogar na ouvidoria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     3. PRODUTOS MAIS VENDIDOS
+══════════════════════════════════════════ -->
+<section id="produtos">
+  <div class="wrap">
+    <div class="section-label" style="text-align:center;margin-bottom:.8rem">
+      <span class="badge badge-cyan">Destaques da Semana</span>
+    </div>
+    <h2 class="section-title">Os produtos que todo<br><span style="color:var(--cyan)">setup top</span> precisa</h2>
+    <p class="section-sub">Selecionados por desempenho, custo-benefício e popularidade entre nossa comunidade.</p>
+
+    <div class="products-grid">
+
+      <!-- 1 -->
+      <div class="product-card">
+        <div class="product-img product-img-bg-purple">
+          <div class="glow" style="filter:drop-shadow(0 0 20px #7c3aed)">⌨️</div>
+          <div class="product-badges">
+            <span class="badge badge-red">–30%</span>
+            <span class="badge badge-purple">Mais Vendido</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Teclado Mecânico RGB TKL Pro</div>
+          <div class="product-desc">Switch Red, anti-ghosting, iluminação RGB por tecla, estrutura em alumínio.</div>
+          <div class="product-price-row">
+            <span class="product-price">R$ 349,90</span>
+            <span class="product-old-price">R$ 499,90</span>
+            <span class="product-discount">–30%</span>
+          </div>
+          <a href="#" class="product-btn">🛒 Comprar Agora</a>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="product-card">
+        <div class="product-img product-img-bg-cyan">
+          <div class="glow" style="filter:drop-shadow(0 0 20px #00f5d4)">🖱️</div>
+          <div class="product-badges">
+            <span class="badge badge-green">Lançamento</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Mouse Gamer RGB 25.600 DPI</div>
+          <div class="product-desc">Sensor óptico de alta precisão, 7 botões programáveis, RGB 16.8M cores.</div>
+          <div class="product-price-row">
+            <span class="product-price">R$ 189,90</span>
+          </div>
+          <a href="#" class="product-btn">🛒 Comprar Agora</a>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="product-card">
+        <div class="product-img product-img-bg-dark">
+          <div class="glow" style="filter:drop-shadow(0 0 20px #9d5cff)">🖥️</div>
+          <div class="product-badges">
+            <span class="badge badge-red">–22%</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Monitor 27" 165Hz IPS FHD</div>
+          <div class="product-desc">1ms GTG, FreeSync Premium, HDR400, design ultrafino sem bordas.</div>
+          <div class="product-price-row">
+            <span class="product-price">R$ 1.149,90</span>
+            <span class="product-old-price">R$ 1.479,90</span>
+            <span class="product-discount">–22%</span>
+          </div>
+          <a href="#" class="product-btn">🛒 Comprar Agora</a>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="product-card">
+        <div class="product-img product-img-bg-mixed">
+          <div class="glow" style="filter:drop-shadow(0 0 20px #22c55e)">🎧</div>
+          <div class="product-badges">
+            <span class="badge badge-purple">Mais Vendido</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Headset 7.1 Surround USB</div>
+          <div class="product-desc">Som surround virtual 7.1, mic com cancelamento de ruído, almofadas em couro.</div>
+          <div class="product-price-row">
+            <span class="product-price">R$ 249,90</span>
+            <span class="product-old-price">R$ 329,90</span>
+            <span class="product-discount">–24%</span>
+          </div>
+          <a href="#" class="product-btn">🛒 Comprar Agora</a>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="product-card">
+        <div class="product-img product-img-bg-purple">
+          <div class="glow" style="filter:drop-shadow(0 0 20px #7c3aed)">💾</div>
+          <div class="product-badges">
+            <span class="badge badge-cyan">Top Hardware</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">SSD NVMe 1TB Gen4 7.000MB/s</div>
+          <div class="product-desc">PCIe 4.0, leitura até 7.000 MB/s, ideal para games e edição de vídeo em 4K.</div>
+          <div class="product-price-row">
+            <span class="product-price">R$ 399,90</span>
+            <span class="product-old-price">R$ 499,90</span>
+            <span class="product-discount">–20%</span>
+          </div>
+          <a href="#" class="product-btn">🛒 Comprar Agora</a>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="product-card">
+        <div class="product-img product-img-bg-cyan">
+          <div class="glow" style="filter:drop-shadow(0 0 20px #00f5d4)">🪑</div>
+          <div class="product-badges">
+            <span class="badge badge-red">–18%</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Cadeira Gamer Reclinável Pro</div>
+          <div class="product-desc">Apoio lombar 4D, reclinação 135°, espuma D30, pistão Classe 4.</div>
+          <div class="product-price-row">
+            <span class="product-price">R$ 899,90</span>
+            <span class="product-old-price">R$ 1.099,90</span>
+            <span class="product-discount">–18%</span>
+          </div>
+          <a href="#" class="product-btn">🛒 Comprar Agora</a>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="product-card">
+        <div class="product-img product-img-bg-dark">
+          <div class="glow" style="filter:drop-shadow(0 0 20px #f59e0b)">🧠</div>
+          <div class="product-badges">
+            <span class="badge badge-green">Lançamento</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">RAM DDR5 32GB 6000MHz RGB</div>
+          <div class="product-desc">Kit 2x16GB, latência CL36, iluminação ARGB sincronizável com a placa-mãe.</div>
+          <div class="product-price-row">
+            <span class="product-price">R$ 549,90</span>
+          </div>
+          <a href="#" class="product-btn">🛒 Comprar Agora</a>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="product-card">
+        <div class="product-img product-img-bg-mixed">
+          <div class="glow" style="filter:drop-shadow(0 0 20px #ef4444)">🎮</div>
+          <div class="product-badges">
+            <span class="badge badge-red">–35%</span>
+            <span class="badge badge-purple">Oferta Relâmpago</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Mousepad XXL Speed Gaming</div>
+          <div class="product-desc">90×40cm, borda costurada, superfície speed, base antiderrapante em borracha.</div>
+          <div class="product-price-row">
+            <span class="product-price">R$ 89,90</span>
+            <span class="product-old-price">R$ 139,90</span>
+            <span class="product-discount">–35%</span>
+          </div>
+          <a href="#" class="product-btn">🛒 Comprar Agora</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="products-cta-row">
+      <a href="#" class="btn-secondary">Ver catálogo completo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     4. BENEFÍCIOS / TRANSFORMAÇÃO
+══════════════════════════════════════════ -->
+<section id="beneficios">
+  <div class="wrap">
+    <div class="ben-grid">
+      <div class="ben-left">
+        <div class="section-label">
+          <span class="badge badge-purple">Transformação Real</span>
+        </div>
+        <h2 class="section-title">Do setup básico<br>ao <span style="color:var(--purple-bright)">nível pro</span></h2>
+        <p class="section-sub" style="text-align:left;margin:0 0 0 0">Cada upgrade que você faz sente na pele — nos frames, na postura, na produtividade e no prazer de usar o PC.</p>
+
+        <div class="ben-bullets">
+          <div class="ben-bullet">
+            <div class="ben-bullet-icon bi-cyan">⚡</div>
+            <div class="ben-bullet-text">
+              <strong>FPS maior, lag zero</strong>
+              <p>Monitores 144Hz–360Hz + periféricos low-latency eliminam o gap entre você e seus adversários.</p>
+            </div>
+          </div>
+          <div class="ben-bullet">
+            <div class="ben-bullet-icon bi-purple">🌡️</div>
+            <div class="ben-bullet-text">
+              <strong>Temperatura controlada, PC durável</strong>
+              <p>Coolers e water coolers certos garantem que sua build roda no máximo sem queimar componentes.</p>
+            </div>
+          </div>
+          <div class="ben-bullet">
+            <div class="ben-bullet-icon bi-cyan">🎨</div>
+            <div class="ben-bullet-text">
+              <strong>Setup clean que impressiona</strong>
+              <p>Organizadores, braços articulados, luzes LED e cabos flat transformam qualquer mesa em obra de arte.</p>
+            </div>
+          </div>
+          <div class="ben-bullet">
+            <div class="ben-bullet-icon bi-purple">🧘</div>
+            <div class="ben-bullet-text">
+              <strong>Mais horas sem cansaço</strong>
+              <p>Cadeira ergonômica + teclado mecânico + monitor na altura certa = produtividade sem dor nas costas.</p>
+            </div>
+          </div>
+          <div class="ben-bullet">
+            <div class="ben-bullet-icon bi-cyan">💻</div>
+            <div class="ben-bullet-text">
+              <strong>Velocidade que você sente</strong>
+              <p>SSD NVMe + RAM DDR5 = boot em segundos, edição de vídeo fluida e zero travada nos games.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ben-right">
+        <div class="comparison-box">
+          <div class="comp-header comp-before">
+            <div class="comp-dot dot-grey"></div>
+            Antes da TechPulse
+          </div>
+          <div class="comp-content">
+            <div class="comp-row"><span class="label">FPS médio</span><span class="bad">45–60 FPS instável</span></div>
+            <div class="comp-row"><span class="label">Tempo de boot</span><span class="bad">2–3 minutos</span></div>
+            <div class="comp-row"><span class="label">Dor nas costas?</span><span class="bad">Todo dia</span></div>
+            <div class="comp-row"><span class="label">Estética do setup</span><span class="bad">Cabos bagunçados</span></div>
+            <div class="comp-row"><span class="label">Temperatura</span><span class="bad">80–90°C na carga</span></div>
+          </div>
+        </div>
+
+        <div style="text-align:center; padding: 1.2rem 0; font-size: 1.5rem; color: var(--cyan)">↓</div>
+
+        <div class="comparison-box">
+          <div class="comp-header comp-after">
+            <div class="comp-dot dot-cyan"></div>
+            Depois da TechPulse ✓
+          </div>
+          <div class="comp-content">
+            <div class="comp-row"><span class="label">FPS médio</span><span class="good">200–360 FPS estável</span></div>
+            <div class="comp-row"><span class="label">Tempo de boot</span><span class="good">Menos de 10 segundos</span></div>
+            <div class="comp-row"><span class="label">Dor nas costas?</span><span class="good">Cadeira 0 problema</span></div>
+            <div class="comp-row"><span class="label">Estética do setup</span><span class="good">Setup clean & RGB</span></div>
+            <div class="comp-row"><span class="label">Temperatura</span><span class="good">55–65°C sob carga</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     5. PROVA SOCIAL
+══════════════════════════════════════════ -->
+<section id="prova">
+  <div class="wrap">
+    <div class="section-label" style="text-align:center;margin-bottom:.8rem">
+      <span class="badge badge-cyan">Prova Social</span>
+    </div>
+    <h2 class="section-title">+15.000 setups entregues.<br><span style="color:var(--cyan)">Clientes que aprovam.</span></h2>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num"><span class="accent">4.8</span>★</span>
+        <span class="stat-label">Avaliação Média</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">+<span class="accent">15</span>K</span>
+        <span class="stat-label">Setups Entregues</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num"><span class="accent">2.347</span></span>
+        <span class="stat-label">Avaliações Verificadas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num"><span class="accent">98</span>%</span>
+        <span class="stat-label">Clientes Satisfeitos</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Comprei o teclado mecânico e o mouse juntos. A diferença nos meus games foi absurda — latência quase zero, feedback tátil incrível. Entrega chegou em 2 dias. Recomendo demais!"</p>
+        <div class="review-author">
+          <div class="review-avatar av-1">GM</div>
+          <div class="review-author-info">
+            <strong>Gabriel Mendes</strong>
+            <span>Gamer · São Paulo, SP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Montei meu PC novo com peças da TechPulse: placa de vídeo, SSD NVMe e a RAM DDR5. Suporte técnico me ajudou a confirmar a compatibilidade antes de comprar. Meu setup ficou top!"</p>
+        <div class="review-author">
+          <div class="review-avatar av-2">RA</div>
+          <div class="review-author-info">
+            <strong>Rodrigo Alves</strong>
+            <span>PC Builder · Curitiba, PR</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sou designer e precisava de um monitor 4K profissional. O atendimento foi excelente, chegou super bem embalado e a qualidade do painel supera o que eu esperava pelo preço."</p>
+        <div class="review-author">
+          <div class="review-avatar av-3">FS</div>
+          <div class="review-author-info">
+            <strong>Fernanda Souza</strong>
+            <span>Designer Gráfica · Belo Horizonte, MG</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Cadeira gamer chegou em 3 dias, montagem fácil. Trabalho home office e estava com dor nas costas toda semana. Faz 2 meses que comprei e o problema sumiu. Valeu cada centavo."</p>
+        <div class="review-author">
+          <div class="review-avatar av-4">LC</div>
+          <div class="review-author-info">
+            <strong>Lucas Costa</strong>
+            <span>Analista de TI · Porto Alegre, RS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">"Headset 7.1 com um som absurdo pra o preço. Uso tanto pro trabalho em call quanto pra gaming. O microfone cancela ruído de verdade. Único ponto: queria mais opções de cor."</p>
+        <div class="review-author">
+          <div class="review-avatar av-5">TP</div>
+          <div class="review-author-info">
+            <strong>Tatiane Pires</strong>
+            <span>Streamer · Fortaleza, CE</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Fiz o setup clean dos sonhos: braço articulado, organizador de cabos e faixas LED. A loja tinha tudo e ainda deu desconto no combo. Parece setup de influencer agora, haha. 10/10!"</p>
+        <div class="review-author">
+          <div class="review-avatar av-1">MO</div>
+          <div class="review-author-info">
+            <strong>Matheus Oliveira</strong>
+            <span>Content Creator · Recife, PE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seals-row">
+      <div class="seal seal-green"><span class="s-icon">🔒</span> Site Seguro SSL</div>
+      <div class="seal seal-blue"><span class="s-icon">💳</span> Mercado Pago</div>
+      <div class="seal seal-green"><span class="s-icon">✅</span> Loja Verificada</div>
+      <div class="seal"><span class="s-icon">🛡️</span> Compra Protegida</div>
+      <div class="seal seal-blue"><span class="s-icon">📦</span> Rastreamento 100%</div>
+      <div class="seal seal-green"><span class="s-icon">↩️</span> 7 dias p/ troca</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     6. MARCAS PARCEIRAS
+══════════════════════════════════════════ -->
+<section id="marcas">
+  <div class="wrap">
+    <div class="marcas-label">Trabalhamos com as melhores marcas do mercado</div>
+    <div class="brands-grid">
+      <div class="brand-pill">HyperX</div>
+      <div class="brand-pill">Logitech G</div>
+      <div class="brand-pill">Razer</div>
+      <div class="brand-pill">Corsair</div>
+      <div class="brand-pill">Kingston</div>
+      <div class="brand-pill">Samsung</div>
+      <div class="brand-pill">NZXT</div>
+      <div class="brand-pill">Cooler Master</div>
+      <div class="brand-pill">Intel</div>
+      <div class="brand-pill">AMD</div>
+      <div class="brand-pill">NVIDIA</div>
+      <div class="brand-pill">ASUS ROG</div>
+      <div class="brand-pill">MSI</div>
+      <div class="brand-pill">Redragon</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     7. OFERTA ESPECIAL / URGÊNCIA
+══════════════════════════════════════════ -->
+<section id="oferta">
+  <div class="wrap">
+    <div class="oferta-box">
+      <span class="badge badge-red" style="font-size:.75rem">🔥 Oferta por Tempo Limitado</span>
+
+      <h2 class="oferta-h2" style="margin-top:1.2rem">
+        Primeira compra?<br>Leva <span style="color:var(--cyan)">10% OFF</span> + Frete Grátis
+      </h2>
+      <p class="oferta-sub">Use o cupom abaixo e economize na sua primeira compra acima de R$199.</p>
+
+      <div class="coupon-badge">PULSE10</div>
+
+      <p style="color:var(--muted);font-size:.82rem;margin-bottom:.5rem">Oferta expira em:</p>
+      <div class="countdown-row">
+        <div class="countdown-block">
+          <span class="countdown-num" id="cd-h">47</span>
+          <span class="countdown-label">Horas</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-block">
+          <span class="countdown-num" id="cd-m">59</span>
+          <span class="countdown-label">Minutos</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-block">
+          <span class="countdown-num" id="cd-s">59</span>
+          <span class="countdown-label">Segundos</span>
+        </div>
+      </div>
+
+      <a href="#produtos" class="btn-primary" style="font-size:1.1rem;padding:.9rem 2.5rem">
+        🎁 Usar Cupom e Montar meu Setup
+      </a>
+
+      <p class="oferta-fine">
+        * Válido para novos clientes · pedido mínimo R$199 · não cumulativo com outras promoções<br>
+        Copie o cupom, aplique no checkout e aproveite.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     8. FINAL CTA
+══════════════════════════════════════════ -->
+<section id="final-cta">
+  <div class="wrap">
+    <div class="final-cta-inner">
+      <span class="badge badge-purple" style="margin-bottom:1.5rem;font-size:.75rem">Pronto para o próximo nível?</span>
+      <h2>
+        Seu setup <span style="color:var(--purple-bright)">ideal</span><br>
+        está a um clique de distância.
+      </h2>
+      <p class="sub">
+        Periféricos gamer, hardware de alto desempenho, setup clean e RGB — tudo com entrega rápida, garantia e suporte especializado.
+      </p>
+      <a href="#produtos" class="btn-primary">
+        ⚡ Garantir meu Setup Agora
+      </a>
+
+      <div class="final-security">
+        <span>🔒 Pagamento 100% seguro</span>
+        <span>↩️ 7 dias para troca sem burocracia</span>
+        <span>📦 Rastreamento em tempo real</span>
+        <span>🛡️ Produtos com nota fiscal</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     A/B TEST HEADLINES
+══════════════════════════════════════════ -->
+<section id="ab-tests" style="display:none">
+  <!-- Esta seção é referência para A/B Testing — não renderizar na produção -->
+  <div class="wrap">
+    <div class="section-label" style="text-align:center;margin-bottom:.5rem">
+      <span class="badge badge-purple">Variações para Teste A/B</span>
+    </div>
+    <h2 class="section-title" style="margin-bottom:.5rem">3 Headlines para Testar</h2>
+    <p class="section-sub">Alterne cada uma nas campanhas de tráfego pago e meça CTR + conversão.</p>
+    <div class="ab-grid">
+      <div class="ab-card">
+        <div class="ab-num">Variação A — Aspiracional</div>
+        <h3>"Seu Setup dos Sonhos Começa Aqui."</h3>
+        <p>Apela para identidade e desejo. Funciona bem para público gamer 18–28 anos em topo de funil (redes sociais, YouTube).</p>
+      </div>
+      <div class="ab-card">
+        <div class="ab-num">Variação B — Urgência + Desconto</div>
+        <h3>"Monte seu PC Gamer com até 35% OFF — Só Essa Semana."</h3>
+        <p>Gatilho de escassez + benefício concreto. Tende a converter melhor em remarketing e Google Ads para quem já conhece a loja.</p>
+      </div>
+      <div class="ab-card">
+        <div class="ab-num">Variação C — Autoridade + Resultado</div>
+        <h3>"+15.000 Setups Entregues. O Próximo É o Seu."</h3>
+        <p>Prova social como headline. Ideal para público mais céticos e compradores de primeira vez. Alta credibilidade imediata.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">Tech<span>Pulse</span> Informática</div>
+  <p style="margin-top:.3rem">© 2025–2026 TechPulse Informática. Todos os direitos reservados.</p>
+  <p style="margin-top:.5rem; font-size:.72rem;">CNPJ: 00.000.000/0001-00 · Loja fictícia criada para fins de demonstração.</p>
+</footer>
+
+<!-- ─── COUNTDOWN JS ─── -->
+<script>
+  // Countdown de 48h a partir do load
+  const storageKey = 'techpulse_deadline';
+  let deadline = localStorage.getItem(storageKey);
+  if (!deadline) {
+    deadline = Date.now() + 48 * 60 * 60 * 1000;
+    try { localStorage.setItem(storageKey, deadline); } catch(e){}
+  }
+  deadline = parseInt(deadline);
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    const diff = Math.max(0, deadline - Date.now());
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-h').textContent = pad(h);
+    document.getElementById('cd-m').textContent = pad(m);
+    document.getElementById('cd-s').textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Fade-in on scroll (IntersectionObserver)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.why-card, .product-card, .review-card, .ab-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity .55s ease, transform .55s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
